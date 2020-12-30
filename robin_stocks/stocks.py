@@ -2,7 +2,7 @@
 import robin_stocks.helper as helper
 import robin_stocks.urls as urls
 
-def get_quotes(inputSymbols, info=None):
+def get_quotes(inputSymbols, info=None, verbose=False):
     """Takes any number of stock tickers and returns information pertaining to its price.
 
     :param inputSymbols: May be a single stock ticker or a list of stock tickers.
@@ -37,7 +37,7 @@ def get_quotes(inputSymbols, info=None):
         return data
 
     for count, item in enumerate(data):
-        if item is None:
+        if item is None and verbose:
             print(helper.error_ticker_does_not_exist(symbols[count]), file=helper.get_output())
 
     data = [item for item in data if item is not None]
